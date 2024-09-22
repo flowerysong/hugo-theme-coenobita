@@ -327,9 +327,10 @@ table {
 
 #site-footer {
   text-align: center;
-  font-size: .9em;
+  font-size: .9rem;
   margin-bottom: 96px;
   margin-top: 64px;
+  @include dimmed;
 
   p {
     margin: 0;
@@ -440,17 +441,6 @@ p.img-404 {
     display: block;
     text-align: center;
     margin-top: .5em;
-  }
-}
-
-#home-footer {
-  text-align: center;
-  font-size: .6em;
-  line-height: normal;
-  @include dimmed;
-
-  p {
-    margin-top: 0;
   }
 }
 

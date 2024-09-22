@@ -1,6 +1,6 @@
-<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+<footer id="site-footer">
 	<p>
-		&copy; {{ now.Format "2006" }} <a href="{{ .Site.BaseURL }}">{{ .Site.Params.author.name }}</a>
+		&copy; {{ now.Format "2006" }} {{ .Site.Params.author.name }}
 		{{- with .OutputFormats.Get "RSS" }}
 		&#183; <a href="{{ "posts/index.xml" | absLangURL }}" target="_blank" title="rss">{{- partial "svg.html" (dict "context" . "name" "rss") -}}</a>
 		{{- end -}}
