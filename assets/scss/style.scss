@@ -564,11 +564,6 @@ hr.post-end {
 }
 
 .content {
-  {{- with .Site.Params.justifyContent }}
-  text-align: justify;
-  text-justify: inter-ideograph; //For IE/Edge
-  {{- end }}
-
   @include aTag;
 
   figure {
