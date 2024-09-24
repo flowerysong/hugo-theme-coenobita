@@ -14,7 +14,7 @@
         {{- if site.Params.listByDate | default true -}}
         {{- $grouped = .Data.Pages.GroupByDate "2006" -}}
         {{- else -}}
-        {{- $grouped = slice (dict "Key" "all" "Pages" .Data.Pages) -}}
+        {{- $grouped = slice (dict "Key" "all" "Pages" .Data.Pages.ByTitle) -}}
         {{- end -}}
         {{- range $grouped }}
         <div class="posts-group">
