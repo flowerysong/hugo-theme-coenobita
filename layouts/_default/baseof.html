@@ -26,12 +26,12 @@
 {{- partial "scroll-to-top.html" . }}
 {{- $main := resources.Get "js/main.js" -}}
 {{- if .Site.Params.code_copy_button | default true -}}
-	{{ $codeCopy := resources.Get "js/code-copy.js" -}}
-	{{ $script := slice $main $codeCopy | resources.Concat "js/bundle.js" | minify | fingerprint -}}
-	<script async src="{{ $script.Permalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous"></script>
+    {{ $codeCopy := resources.Get "js/code-copy.js" -}}
+    {{ $script := slice $main $codeCopy | resources.Concat "js/bundle.js" | minify | fingerprint -}}
+    <script async src="{{ $script.Permalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous"></script>
 {{- else -}}
-	{{ $script := $main | minify | fingerprint -}}
-	<script async src="{{ $script.Permalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous"></script>
+    {{ $script := $main | minify | fingerprint -}}
+    <script async src="{{ $script.Permalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous"></script>
 {{- end -}}
 {{- range .Params.custom_js -}}
 {{ $c_js := resources.Get . | minify | fingerprint -}}
