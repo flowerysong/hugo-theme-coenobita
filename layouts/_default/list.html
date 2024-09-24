@@ -26,7 +26,9 @@
                 <li class="post-item">
                     <a href="{{.Permalink}}">
                         <span class="post-title">{{.Title}}</span>
+                        {{- if site.Params.listByDate | default true }}
                         <span class="post-day">{{ .Date.Format .Site.Params.dateformShort }}</span>
+                        {{- end }}
                     </a>
                     {{- if and .Page.Params.description .Site.Params.descriptionInPosts -}}
                     <span class="post-description">{{ .Page.Params.description }}</span>
