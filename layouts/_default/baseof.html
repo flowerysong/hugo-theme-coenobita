@@ -1,23 +1,23 @@
-{{ $rootCtx := . }}
-
+{{- $rootCtx := . -}}
 <!DOCTYPE html>
 <html lang="{{.Site.LanguageCode}}">
 <head>
-{{- partial "site-meta.html" . -}}
-{{ $author := (.Params.author | default .Site.Params.author.name) -}}<meta name="author" content="{{ $author }}">
-{{- with .Page.Params.description | default .Site.Params.description -}}<meta name="description" content="{{.}}">{{- end -}}
-{{- partial "structured-data.html" . -}}
-<title>{{.Title}}</title>
-{{ range .AlternativeOutputFormats -}}
+{{ partial "site-meta.html" . }}
+    <meta name="author" content="{{ .Params.author | default .Site.Params.author.name }}">
+{{- with .Page.Params.description | default .Site.Params.description }}
+    <meta name="description" content="{{.}}">
+{{- end }}
+{{- partial "structured-data.html" . }}    <title>{{.Title}}</title>
+{{- range .AlternativeOutputFormats }}
 {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Title | safeHTML }}
-{{ end -}}
-{{ $style := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "css/style.css" . | toCSS | minify | fingerprint -}}
-<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="{{ $style.Permalink }}" {{ printf "integrity=%q" $style.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
-{{- range .Params.custom_css -}}
-{{ $c_css := resources.Get . | resources.ExecuteAsTemplate "css/style.css" $rootCtx | toCSS | minify | fingerprint -}}
-<link rel="stylesheet preload prefetch" as="style" href="{{ $c_css.Permalink }}" {{ printf "integrity=%q" $c_css.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
-{{- end -}}
-{{- block "head" . -}}{{- end -}}
+{{- end }}
+{{- $style := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "css/style.css" . | toCSS | minify | fingerprint }}
+    <link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="{{ $style.Permalink }}" {{ printf "integrity=%q" $style.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
+{{- range .Params.custom_css }}
+{{- $c_css := resources.Get . | resources.ExecuteAsTemplate "css/style.css" $rootCtx | toCSS | minify | fingerprint }}
+    <link rel="stylesheet preload prefetch" as="style" href="{{ $c_css.Permalink }}" {{ printf "integrity=%q" $c_css.Data.Integrity | safeHTMLAttr }} crossorigin="anonymous">
+{{- end }}
+{{- block "head" . }}{{- end }}
 </head>
 <body id="page">
 {{- block "header" . -}}{{ end -}}
